@@ -1,13 +1,13 @@
-package day20.com.ict.edu3;
+package day21.com.ict.edutest;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Set;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,26 +15,34 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-public class Ex02_Main extends JFrame {
-
-	JPanel jp;
+public class Country extends JPanel {
+	
+	Main main;
+	
+	JPanel jp1;
 	JTextField jtf;
-	JButton jb1, jb2;
+	JButton jb,jb1, jb2;
 	JTextArea jta;
 	JScrollPane jsp;
+	
+	CardLayout card;
 
-	public Ex02_Main() {
-		super("수도 알아내기");
-
-		jp = new JPanel();
+	
+	public Country(Main main) {
+		
+		this.main = main;
+		
+		jp1 = new JPanel();
+		jb = new JButton("계산기 이동");
 		jtf = new JTextField(15);
 		jb1 = new JButton("확인");
 		jb2 = new JButton("취소");
-
-		jp.add(new JLabel("나라 입력 : "));
-		jp.add(jtf);
-		jp.add(jb1);
-		jp.add(jb2);
+		
+		jp1.add(jb);
+		jp1.add(new JLabel("나라 입력 : "));
+		jp1.add(jtf);
+		jp1.add(jb1);
+		jp1.add(jb2);
 
 		jta = new JTextArea(10, 30);
 		jsp = new JScrollPane(jta, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -42,12 +50,9 @@ public class Ex02_Main extends JFrame {
 		jta.setLineWrap(true); // 자동 줄바꿈
 		jta.setEditable(false); // 고칠거니? 아뇨
 
-		add(jp, BorderLayout.NORTH);
+		add(jp1, BorderLayout.NORTH);
 		add(jsp, BorderLayout.CENTER);
 
-		pack();
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 
 		jtf.addActionListener(new ActionListener() {
@@ -76,6 +81,17 @@ public class Ex02_Main extends JFrame {
 				jtf.requestFocus();
 			}
 		});
+		
+		jb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		
 	}
 
 	// 위 중복된 코드가 있으므로 메서드를 만들자
@@ -105,9 +121,5 @@ public class Ex02_Main extends JFrame {
 		jtf.requestFocus();
 	}
 
-	public static void main(String[] args) {
 
-		new Ex02_Main();
-
-	}
 }

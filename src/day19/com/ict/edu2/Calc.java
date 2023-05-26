@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.InputMismatchException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -27,7 +28,9 @@ public class Calc extends JFrame implements ItemListener, ActionListener {
 	JScrollPane jsp;
 	JButton jc1, jc2, jc3;
 
-	int res = 0;
+	double res = 0;
+	double su1 = 0;
+	double su2 = 0;
 
 	public Calc() {
 		super("계산기");
@@ -101,21 +104,25 @@ public class Calc extends JFrame implements ItemListener, ActionListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-
-		String str = jf1.getText();
-		String str2 = jf2.getText();
-		int su1 = Integer.parseInt(str);
-		int su2 = Integer.parseInt(str2);
-
-		if (jb1 == e.getSource()) {
-			res = su1 + su2;
-		} else if (jb2 == e.getSource()) {
-			res = su1 - su2;
-		} else if (jb3 == e.getSource()) {
-			res = su1 * su2;
-		} else if (jb4 == e.getSource()) {
-			res = su1 / su2;
+		
+		
+		try {
+			su1 = Double.parseDouble(jf1.getText());
+			su2 = Double.parseDouble(jf2.getText());
+		} catch (InputMismatchException e2) {
+			jta.append("숫자를 입력하세요\n");
 		}
+		
+		if (jb1.isSelected()) {
+			res = su1 + su2;
+		} else if (jb2.isSelected()) {
+			res = su1 - su2;
+		} else if (jb3.isSelected()) {
+			res = su1 * su2;
+		} else if (jb4.isSelected()) {
+			res = (int)(su1/su2*10)/10.0;
+		}
+		
 	}
 
 	@Override
@@ -129,6 +136,11 @@ public class Calc extends JFrame implements ItemListener, ActionListener {
 			System.exit(0);
 		} else if (obj == jc3) {
 			jta.setText(" ");
+			jf1.setText(" ");
+			jf2.setText(" ");
+			res = 0;
+			su1 = 0;
+			su2 = 0;
 		}
 
 	}
