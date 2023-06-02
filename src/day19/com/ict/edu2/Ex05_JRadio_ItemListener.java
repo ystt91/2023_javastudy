@@ -55,7 +55,7 @@ public class Ex05_JRadio_ItemListener extends JFrame implements ActionListener,I
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		jta.setLineWrap(true);
-		jta.setEditable(false);
+		jta.setEditable(true);
 		
 		jp2 = new JPanel();
 		exit = new JButton("exit");
