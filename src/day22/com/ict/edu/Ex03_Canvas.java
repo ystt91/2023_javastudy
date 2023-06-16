@@ -23,8 +23,6 @@ public class Ex03_Canvas extends Canvas{
 		
 		g.drawImage(image, 120, 230, 100, 100, this); //크기 조절
 		
-		
-		
 		try {
 			BufferedImage image2 = ImageIO.read(new File("src/images/java2.png"));
 			g.drawImage(image2, 240, 230, 100, 100, this);
